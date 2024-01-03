@@ -1,0 +1,54 @@
+.container_view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  width: 50%;
+  min-width: 400px;
+  height: 50%;
+  border-radius: 50px;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+  z-index: 99999999999999;
+}
+
+.container_view p {
+  max-width: 400px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  transition: all 2s;
+}
+
+#opciones {
+  width: 80px;
+  padding: 2px;
+  text-align: center;
+}
+
+.configure_cant {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.configure_cant button {
+  font-size: 1rem;
+  width: 25px;
+}
+
+.add_to_cart {
+  padding: 5px;
+}
+
+input[type="submit"] {
+  width: 50px;
+  height: 25px;
+}

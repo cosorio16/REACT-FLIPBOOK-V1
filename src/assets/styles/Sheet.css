@@ -1,0 +1,61 @@
+.sheet {
+  width: 50%;
+  max-width: 460px;
+  height: 90vh;
+  position: fixed;
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: transform 0.5s ease-in, z-index 0.3s step-end, right 0.5s ease-out;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 0.4s ease-out, z-index 0.3s step-end;
+}
+
+.back {
+  transform: rotateY(180deg);
+  transition: transform 0.5s ease-in, z-index 0.3s step-end;
+  backface-visibility: hidden;
+}
+
+.flip {
+  transform: rotateY(180deg);
+  transition: transform 0.4s ease-out, z-index 0.3s step-end;
+  transform-origin: left;
+  backface-visibility: hidden;
+}
+
+.videoMedia {
+  font-size: 1.8rem;
+  color: black;
+  position: absolute;
+  right: 10px;
+  top: 50px;
+}
+
+.videoMedia:hover {
+  transform: scale(1.05);
+  color: blue;
+}
+
+.product_view {
+  font-size: 1.6rem;
+  background-color: transparent;
+  border: none;
+  color: black;
+  position: absolute;
+  left: 10px;
+  bottom: 15px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1300px) {
+  .sheet {
+    height: 65vw;
+    top: calc(50% + 60px);
+  }
+}
