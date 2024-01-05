@@ -3,6 +3,8 @@ import "../../styles/Sheet.css";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 import { faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import View from "../view/View";
+import flipbook from "../../data/data";
 
 function Sheet({
   isFlipped,
@@ -12,6 +14,7 @@ function Sheet({
   rValue,
   videoMediaLinkFront,
   videoMediaLinkBack,
+  productInFront,
   sheetNumber,
 }) {
   return (
@@ -32,6 +35,9 @@ function Sheet({
           <button className="product_view" title="Ver Productos">
             <FontAwesomeIcon icon={faBagShopping} />
           </button>
+
+          <View product={productInFront}></View>
+
           {videoMediaLinkFront && (
             <a
               className="videoMedia"

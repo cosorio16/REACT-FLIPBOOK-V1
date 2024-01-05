@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Nav from "./assets/components/nav/Nav.jsx";
 import Header from "./assets/components/header/Header.jsx";
-import View from "./assets/components/views/View.jsx";
+import View from "./assets/components/view/View.jsx";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,6 +30,7 @@ function App() {
       zValue: flipbook.length - index,
       videoFront: f.videoMediaLinkFront,
       videoBack: f.videoMediaLinkBack,
+      producto: f.productsInFront,
     }))
   );
 
@@ -98,7 +99,7 @@ function App() {
   return (
     <>
       <div className="container_home">
-      <Nav handleButtonClick={handleButtonClick}></Nav>
+        <Nav handleButtonClick={handleButtonClick}></Nav>
         <div className="container_flipbook">
           <Header></Header>
           <div className="catalogo_passion_ferretera">
@@ -114,6 +115,7 @@ function App() {
                   rValue={rValue}
                   videoMediaLinkFront={sheet.videoFront}
                   videoMediaLinkBack={sheet.videoBack}
+                  productInFront={sheet.producto}
                 ></Sheet>
               ))}
             </div>
