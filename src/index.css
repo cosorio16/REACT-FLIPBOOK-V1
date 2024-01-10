@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -6,4 +8,118 @@
 
 body {
   touch-action: manipulation;
+}
+
+p,
+button,
+h1,
+span {
+  font-family: "Poppins", sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1600px) {
+  .sheet {
+    right: calc(20%);
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  .sheet {
+    top: calc(20%);
+    max-height: 490px;
+    height: 60%;
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .sheet {
+    height: 50%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .container_home {
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px auto;
+  }
+
+  .catalogo_menu_sections_bar {
+    grid-area: 1/1/1/1;
+    padding: 20px;
+  }
+
+  .container_flipbook {
+    grid-area: 2/1/2/1;
+  }
+
+  .buttons_direction_flip {
+    top: calc(30%);
+  }
+
+  .sheet {
+    max-height: 440px;
+    right: calc(15%);
+    top: calc(20%);
+  }
+
+  .header_container {
+    margin-top: 10px;
+    padding: 20px;
+  }
+
+  .containerProducts {
+    width: 70%;
+    height: 80vh;
+  }
+
+  .catalogo_menu_sections_bar {
+    width: 100vw;
+    flex-direction: row;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    justify-content: start;
+    scroll-behavior: smooth;
+  }
+
+  .catalogo_menu_sections_bar button {
+    min-width: 100px;
+  }
+
+  .catalogo_menu_sections_bar button.active {
+    scroll-snap-align: initial;
+  }
+
+  .view_container_product {
+    position: fixed;
+    width: 100vw;
+    height: 70vh;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .sheet {
+    right: calc(1%);
+    width: 45vw;
+    max-height: 400px;
+    min-width: 200px;
+  }
+
+  .page {
+    overflow: scroll;
+  }
+
+  .videoMedia,
+  .product_view {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .sheet {
+    max-height: 300px;
+  }
 }

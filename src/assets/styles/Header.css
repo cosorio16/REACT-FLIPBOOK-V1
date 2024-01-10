@@ -6,7 +6,8 @@
   height: 50px;
   padding: 15px;
   background: #ffffff;
-  box-shadow: 10px 1px 20px #bebebe, -20px -20px 60px #ffffffa1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.747);
+  position: relative;
 }
 
 .header_container svg {
@@ -16,18 +17,132 @@
   color: black;
 }
 
-.amount_notification {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #fabf22;
-  z-index: 999;
-  position: absolute;
-  top: calc(0px + 10px);
-  right: calc(0px + 10px);
-}
-
-.header_container button {
+.cart_shop {
   border: none;
   background-color: transparent;
+}
+
+.containerProducts {
+  position: absolute;
+  top: calc(100%);
+  width: 60%;
+  height: 90vh;
+  background-color: rgb(255, 255, 255);
+  z-index: 11100;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: scroll;
+  border: 1px solid rgba(0, 0, 0, 0.363);
+  border-radius: 0px;
+  background: #ffffff;
+  box-shadow: -8px 8px 16px #dbdbdb, 8px -8px 16px #ffffff;
+}
+
+.product_card_header {
+  width: 100%;
+  padding: 10px;
+  line-height: 1.2rem;
+  letter-spacing: 0.5px;
+  border-radius: 0px;
+  background: #ffffff;
+  box-shadow: -11px 11px 22px #d9d9d9, 11px -11px 22px #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.308);
+}
+
+.delete_button {
+  padding: 10px;
+  font-weight: 1000;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+  color: black;
+  margin-top: 10px;
+  border: none;
+}
+
+.delete_button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: red;
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+}
+
+.delete_button:hover {
+  color: #ffffff;
+  font-weight: 1000;
+  transition: width 0.1s ease-in-out;
+}
+
+.delete_button:hover::before {
+  width: 100%;
+  transition: width 0.1s ease-in-out;
+}
+
+.categoria_header,
+.tipo_header,
+.option_header,
+.cantidad_header,
+.code_header {
+  display: flex;
+}
+
+.charact_item {
+  width: 100px;
+  opacity: 0.6;
+  font-weight: 500;
+}
+
+.product_card_header p {
+  font-weight: 600;
+  letter-spacing: 0.8px;
+}
+
+.empty_message {
+  text-align: center;
+}
+
+.pay_with_whatsapp {
+  position: fixed;
+  bottom: 50px;
+  width: 50%;
+  max-width: 200px;
+  padding: 10px;
+  right: calc(5%);
+  border: none;
+  font-weight: 1000;
+  z-index: 1;
+}
+
+.pay_with_whatsapp::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: rgb(0, 255, 0);
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+}
+
+.pay_with_whatsapp:hover {
+  color: #ffffff;
+  font-weight: 1000;
+  transition: width 0.1s ease-in-out;
+}
+
+.pay_with_whatsapp:hover::before {
+  width: 100%;
+  transition: width 0.1s ease-in-out;
 }

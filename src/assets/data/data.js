@@ -9,6 +9,8 @@ const flipbook = [
     productsInFront: [
       {
         name: "Aerosoles",
+        description:
+          "Descubre la revolución en colores con nuestra línea de aerosoles todo propósito. Desde negro clásico hasta tonos vibrantes, nuestra pintura todo propósito ofrece una cobertura excepcional en una amplia gama de superficies. Además, explora nuestros acabados especiales, desde anticorrosivos hasta metalizados, para darle un toque único a tus proyectos. ¿Buscas algo más llamativo? Sumérgete en nuestra colección de colores fluorescentes y haz que tus creaciones brillen con luz propia. Calidad y versatilidad en cada bote, ¡transforma tus ideas en realidad con nuestros aerosoles!",
         tipos: [
           {
             name: "Todo Proposito",
@@ -82,6 +84,8 @@ const flipbook = [
     productsInBack: [
       {
         name: "Articulos de Pintura",
+        description:
+          "Explora nuestra gama de artículos de pintura para llevar tus proyectos al siguiente nivel. Desde brochas negras de mango plástico hasta cintas de papel drywall, cada producto está diseñado para brindar resultados impecables. Nuestras brochas y rodillos profesionales garantizan una aplicación suave y uniforme de la pintura, mientras que nuestras cintas aseguran límites perfectos. Descubre la calidad en cada detalle y transforma tus espacios con nuestros artículos de pintura. ¡Haz de cada proyecto una obra maestra con productos que marcan la diferencia!",
         tipos: [
           {
             name: "Brocha Negra Mango Plastico",
@@ -153,6 +157,8 @@ const flipbook = [
     productsInFront: [
       {
         name: "Herramientas",
+        description:
+          "Potencia tu creatividad con nuestras herramientas de alta calidad. Desde alicates de corte frío hasta llaves inglesas-tubo, cada herramienta está diseñada para proporcionar un rendimiento excepcional. Nuestros alicates, tijeras, y tenazas son robustos y duraderos, perfectos para cualquier trabajo. Ya sea que seas un profesional o un entusiasta del bricolaje, nuestras herramientas te brindarán precisión y confiabilidad en cada tarea. ¡Eleva tus habilidades con las herramientas que hacen la diferencia!",
         tipos: [
           {
             name: "Alicate Corta Frio Prof",
@@ -263,7 +269,7 @@ const flipbook = [
         ],
       },
     ],
-    productsInBack: {},
+    productsInBack: [{}],
   },
 
   {
@@ -272,7 +278,7 @@ const flipbook = [
     imageFront: "../../../public/images/pagina_5.webp",
     imageBack: "../../../public/images/pagina_6.webp",
     productsInFront: [{}],
-    productsInBack: {},
+    productsInBack: [{}],
   },
 
   {
@@ -280,7 +286,7 @@ const flipbook = [
     imageFront: "../../../public/images/pagina_7.webp",
     imageBack: "../../../public/images/pagina_8.webp",
     productsInFront: [{}],
-    productsInBack: {},
+    productsInBack: [{}],
   },
 
   {
@@ -288,7 +294,7 @@ const flipbook = [
     imageFront: "../../../public/images/pagina_9.webp",
     imageBack: "../../../public/images/pagina_10.webp",
     productsInFront: [{}],
-    productsInBack: {},
+    productsInBack: [{}],
   },
 
   {
@@ -296,7 +302,7 @@ const flipbook = [
     imageFront: "../../../public/images/pagina_11.webp",
     imageBack: "../../../public/images/pagina_12.webp",
     productsInFront: [{}],
-    productsInBack: {},
+    productsInBack: [{}],
   },
 
   {
@@ -312,7 +318,7 @@ const flipbook = [
     imageFront: "../../../public/images/pagina_15.webp",
     imageBack: "../../../public/images/pagina_16.webp",
     productsInFront: [{}],
-    productsInBack: {},
+    productsInBack: [{}],
   },
 ];
 

@@ -1,43 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/Nav.css";
 
-function Nav({ handleButtonClick, opacityNav }) {
+function Nav({ handleButtonClick, activeSection, currentPage }) {
+  const sections = [
+    "aerosoles",
+    "Artículos de Pintura",
+    "herramientas",
+    "Corte, Pulido y Desbaste",
+    "medición",
+    "Cerrajería y Candados",
+    "accesorios",
+    "Malla Sombra y Sogas",
+    "Herramientas Agrícolas",
+    "Compresores y Soldadores",
+    "hidrolavadoras",
+    "fijación",
+  ];
+
+  const categoryMap = {
+    aerosoles: 1,
+    "Artículos de Pintura": 2,
+    herramientas: 2,
+    "Corte, Pulido y Desbaste": 4,
+    "medición": 4,
+    "Cerrajería y Candados": 5,
+    accesorios: 5,
+    "Malla Sombra y Sogas": 6,
+    "Herramientas Agrícolas": 6,
+    "Compresores y Soldadores": 7,
+    hidrolavadoras: 8,
+    "fijación": 8,
+  };
+
+  const handleButtonClickWithActive = (section) => {
+    handleButtonClick(section);
+  };
+
   return (
     <>
-      <div
-        className="catalogo_menu_sections_bar"
-        style={{ opacity: opacityNav }}
-      >
-        <button onClick={() => handleButtonClick(`aerosol`)}>AEROSOLES</button>
-        <button onClick={() => handleButtonClick(`pintura`)}>
-          ARTICULOS DE PINTURA
-        </button>
-        <button onClick={() => handleButtonClick(`herramientas`)}>
-          HERRAMIENTAS
-        </button>
-        <button onClick={() => handleButtonClick(`discos`)}>
-          CORTE, PULIDO Y DEBASTE
-        </button>
-        <button onClick={() => handleButtonClick(`medicion`)}>MEDICIÓN</button>
-        <button onClick={() => handleButtonClick(`cerrajeria`)}>
-          CERRAJERÍA Y CANDADOS
-        </button>
-        <button onClick={() => handleButtonClick(`accesorios`)}>
-          ACCESORIOS
-        </button>
-        <button onClick={() => handleButtonClick(`malla`)}>
-          MALLA SOMBRA Y SOGAS
-        </button>
-        <button onClick={() => handleButtonClick(`agricola`)}>
-          HERRAMIENTAS AGRÍCOLAS
-        </button>
-        <button onClick={() => handleButtonClick(`compresores`)}>
-          COMPRESORES Y SOLDADORES
-        </button>
-        <button onClick={() => handleButtonClick(`hidrolavadoras`)}>
-          HIDROLAVADORAS
-        </button>
-        <button onClick={() => handleButtonClick(`fijacion`)}>FIJACIÓN</button>
+      <div className="catalogo_menu_sections_bar">
+        {sections.map((section) => (
+          <button
+            key={section}
+            onClick={() => handleButtonClickWithActive(section)}
+            className={currentPage === categoryMap[section] ? "active" : ""}
+          >
+            {section.toUpperCase()}
+          </button>
+        ))}
       </div>
     </>
   );

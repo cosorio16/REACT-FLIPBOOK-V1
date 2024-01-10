@@ -40,14 +40,16 @@
 
 .catalogo_menu_sections_bar button:hover {
   color: #ffffff;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  width: 101%;
-  font-weight: 1000;
-  transition: width 0.2s ease-in-out;
+  transition: width 0.1s ease-in-out;
 }
 
 .catalogo_menu_sections_bar button:hover::before {
   width: 100%;
-  transition: width 0.2s ease-in-out;
+  transition: width 0.1s ease-in-out;
+}
+
+.catalogo_menu_sections_bar button.active {
+  color: white;
+  background-color: #fabf22;
+  scroll-snap-align: center;
 }

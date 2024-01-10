@@ -1,6 +1,10 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import "../../styles/Sheet.css";
-import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBagShopping,
+  faCircleXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import View from "../view/View";
@@ -15,13 +19,40 @@ function Sheet({
   videoMediaLinkFront,
   videoMediaLinkBack,
   productInFront,
+  productInBack,
   sheetNumber,
+  iconoActual,
+  setIconoActual,
 }) {
+  const [showStatusFront, setShowStatusFront] = useState(false);
+  const [showStatusBack, setShowStatusBack] = useState(false);
+
+  useEffect(() => {
+    setShowStatusFront(showStatusFront);
+  }, [showStatusFront]);
+
+  useEffect(() => {
+    setShowStatusBack(showStatusBack);
+  }, [showStatusBack]);
+
   return (
     <>
+      <View
+        showView={showStatusFront}
+        setShowView={(showStatus) => setShowStatusFront(showStatus)}
+        product={productInFront}
+        setIconoActual={setIconoActual} // Pasar la función para actualizar el icono
+      />
+      <View
+        showView={showStatusBack}
+        setShowView={(showStatus) => setShowStatusBack(showStatus)}
+        product={productInBack}
+        setIconoActual={setIconoActual} // Pasar la función para actualizar el icono
+      />
       <div
+        id={`sheet-${sheetNumber}`}
         className={`sheet ${isFlipped ? "flip" : ""}`}
-        style={{ zIndex, right: rValue }}
+        style={{ zIndex }}
       >
         <div
           className="page"
@@ -32,11 +63,16 @@ function Sheet({
             backgroundPosition: "center",
           }}
         >
-          <button className="product_view" title="Ver Productos">
-            <FontAwesomeIcon icon={faBagShopping} />
+          <button
+            onClick={() => {
+              setShowStatusFront(!showStatusFront);
+              setShowStatusBack(false); // Asegurarse de cerrar el otro panel
+              setIconoActual(faBagShopping); // Restablecer el icono al abrir el panel
+            }}
+            className="product_view"
+          >
+            <FontAwesomeIcon icon={faBagShopping} title="Cerrar" />
           </button>
-
-          <View product={productInFront}></View>
 
           {videoMediaLinkFront && (
             <a
@@ -59,8 +95,13 @@ function Sheet({
             backgroundPosition: "center",
           }}
         >
-          <button className="product_view" title="Ver Productos">
-            <FontAwesomeIcon icon={faBagShopping} />
+          <button
+            onClick={() => {
+              setShowStatusBack(!showStatusBack);
+            }}
+            className="product_view"
+          >
+            <FontAwesomeIcon icon={faBagShopping} title="Ver Productos" />
           </button>
           {videoMediaLinkBack && (
             <a
