@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../styles/View.css";
 import { useCarrito } from "../carrito/CarritoContext";
 
-function View({ product, showView, setShowView, setIconoActual }) {
+function View({ product, showView, setShowView }) {
   const { dispatch } = useCarrito();
   const [show, setShow] = useState(showView);
   const [cantidad, setCantidad] = useState(1);
@@ -58,7 +58,7 @@ function View({ product, showView, setShowView, setIconoActual }) {
         <div className={"view_container_product"}>
           <div className="characts_container">
             <img
-              src="../../../public/images/masso.webp"
+              src="./images/masso.webp"
               alt="masso_logo"
               className="image_masso"
             />

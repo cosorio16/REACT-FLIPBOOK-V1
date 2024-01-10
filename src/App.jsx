@@ -13,20 +13,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [rValue, setRValue] = useState("calc(0%)");
   const [activeSection, setActiveSection] = useState("aerosol");
-  const [iconoActual, setIconoActual] = useState(faBagShopping);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   const [sheets, setSheets] = useState(
     flipbook.map((f, index) => ({
       id: f.numberSheet,
@@ -68,7 +57,6 @@ function App() {
       setCurrentPage(currentPage + 1);
     }
   }
-
   function handleButtonClick(buttonType) {
     const categoryMap = {
       aerosoles: 1,
@@ -103,60 +91,51 @@ function App() {
   return (
     <>
       <div className="container_home">
-        {loading ? (
-          <div class="loader book">
-            <figure class="page_loader"></figure>
-            <figure class="page_loader"></figure>
-            <figure class="page_loader"></figure>
-          </div>
-        ) : (
-          <>
-            <Nav
-              handleButtonClick={handleButtonClick}
-              activeSection={activeSection}
-              currentPage={currentPage}
-            ></Nav>
-            <div className="container_flipbook">
-              <Header></Header>
-              <div className="catalogo_passion_ferretera">
-                {sheets.map((sheet, index) => (
-                  <Sheet
-                    key={sheet.id}
-                    isFlipped={sheet.isFlipped}
-                    imageFront={sheet.imageFront}
-                    imageBack={sheet.imageBack}
-                    zIndex={sheet.zValue}
-                    sheetNumber={index + 1}
-                    rValue={rValue}
-                    videoMediaLinkFront={sheet.videoFront}
-                    videoMediaLinkBack={sheet.videoBack}
-                    productInFront={sheet.producto}
-                    productInBack={sheet.productoBack}
-                    iconoActual={iconoActual}
-                    setIconoActual={setIconoActual}
-                  ></Sheet>
-                ))}
+        <>
+          <Nav
+            handleButtonClick={handleButtonClick}
+            activeSection={activeSection}
+            currentPage={currentPage}
+          ></Nav>
+          <div className="container_flipbook">
+            <Header></Header>
+            <div className="catalogo_passion_ferretera">
+              {sheets.map((sheet, index) => (
+                <Sheet
+                  key={sheet.id}
+                  isFlipped={sheet.isFlipped}
+                  imageFront={sheet.imageFront}
+                  imageBack={sheet.imageBack}
+                  zIndex={sheet.zValue}
+                  sheetNumber={index + 1}
+                  videoMediaLinkFront={sheet.videoFront}
+                  videoMediaLinkBack={sheet.videoBack}
+                  productInFront={sheet.producto}
+                  productInBack={sheet.productoBack}
+                  loading={loading}
+                  setLoading={setLoading}
+                ></Sheet>
+              ))}
 
-                <div className="buttons_direction_flip">
-                  <button
-                    title="Anterior"
-                    className="prev_page"
-                    onClick={prevPage}
-                  >
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                  </button>
-                  <button
-                    title="Siguiente"
-                    className="next_page"
-                    onClick={nextPage}
-                  >
-                    <FontAwesomeIcon icon={faArrowRight} />
-                  </button>
-                </div>
+              <div className="buttons_direction_flip">
+                <button
+                  title="Anterior"
+                  className="prev_page"
+                  onClick={prevPage}
+                >
+                  <FontAwesomeIcon icon={faArrowLeft} />
+                </button>
+                <button
+                  title="Siguiente"
+                  className="next_page"
+                  onClick={nextPage}
+                >
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </button>
               </div>
             </div>
-          </>
-        )}
+          </div>
+        </>
       </div>
     </>
   );
