@@ -5,6 +5,7 @@ import Sheet from "./assets/components/sheet/Sheet.jsx";
 import Nav from "./assets/components/nav/Nav.jsx";
 import Header from "./assets/components/header/Header.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faArrowLeft,
   faArrowRight,
@@ -18,18 +19,10 @@ function App() {
   const [activeSection, setActiveSection] = useState("aerosol");
   const [iconoActual, setIconoActual] = useState(faBagShopping);
 
-  // useEffect(() => {
-  //   if (currentPage === 1 || currentPage === 0) {
-  //     setRValue("calc(30%)");
-  //   } else {
-  //     setRValue("calc(10%)");
-  //   }
-  // }, [currentPage]);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 0);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -82,14 +75,14 @@ function App() {
       "Artículos de Pintura": 2,
       herramientas: 2,
       "Corte, Pulido y Desbaste": 4,
-      "medición": 4,
+      medición: 4,
       "Cerrajería y Candados": 5,
       accesorios: 5,
       "Malla Sombra y Sogas": 6,
       "Herramientas Agrícolas": 6,
       "Compresores y Soldadores": 7,
       hidrolavadoras: 8,
-      "fijación": 8
+      fijación: 8,
     };
 
     const page = categoryMap[buttonType];
@@ -111,7 +104,11 @@ function App() {
     <>
       <div className="container_home">
         {loading ? (
-          <div className="loader">Loading...</div>
+          <div class="loader book">
+            <figure class="page_loader"></figure>
+            <figure class="page_loader"></figure>
+            <figure class="page_loader"></figure>
+          </div>
         ) : (
           <>
             <Nav
