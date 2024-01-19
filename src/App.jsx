@@ -29,36 +29,34 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 0);
 
     return () => clearTimeout(timer);
   }, []);
 
   function prevPage() {
-    if (currentPage >= 1) {
-      const updateSheets = sheets.map((sheet, index) =>
-        sheet.id === currentPage
-          ? {
-              ...sheet,
-              isFlipped: false,
-              zValue: flipbook.length - index,
-            }
-          : sheet
-      );
+    if (currentPage > 1) {
+      const updatedSheets = sheets.map((sheet, index) => ({
+        ...sheet,
+        isFlipped: false,
+        zValue: flipbook.length - index,
+      }));
 
-      setSheets(updateSheets);
-      setCurrentPage(currentPage - 1);
+      setSheets(updatedSheets);
+      setCurrentPage((prevPage) => prevPage - 1);
     }
   }
+
   function nextPage() {
-    if (currentPage >= 0 && currentPage < flipbook.length + 1) {
-      const updateSheets = sheets.map((sheet, index) =>
-        sheet.id === currentPage
-          ? { ...sheet, isFlipped: true, zValue: index }
-          : sheet
-      );
-      setSheets(updateSheets);
-      setCurrentPage(currentPage + 1);
+    if (currentPage >= 0 && currentPage < flipbook.length) {
+      const updatedSheets = sheets.map((sheet, index) => ({
+        ...sheet,
+        isFlipped: index < currentPage,
+        zValue: index < currentPage ? index : flipbook.length - index,
+      }));
+
+      setSheets(updatedSheets);
+      setCurrentPage((prevPage) => prevPage + 1);
     }
   }
   function handleButtonClick(buttonType) {

@@ -88,7 +88,7 @@ const flipbook = [
           {
             name: "Brocha Negra Mango Plastico",
             options: [
-              { value: "1/2\"", code: "45097", UE: "1/36" },
+              { value: "1/2", code: "45097", UE: "1/36" },
               { value: "1", code: "45098", UE: "1/36" },
               { value: "1 1/2", code: "45099", UE: "1/36" },
               { value: "2", code: "45100", UE: "1/36" },
@@ -117,27 +117,15 @@ const flipbook = [
           },
           {
             name: "Mini Aerografo",
-            options: [{ value: "Mini Aerografo", code: "71323", UE: "1/30" }],
+            options: [{ value: "", code: "71323", UE: "1/30" }],
           },
           {
             name: "Pistola de Pintura Automotriz",
-            options: [
-              {
-                value: "Pistola de Pintura Automotriz",
-                code: "47831",
-                UE: "1/10",
-              },
-            ],
+            options: [{ value: "", code: "47831", UE: "1/10" }],
           },
           {
-            name: "Aerografo de Gravedad de Alta",
-            options: [
-              {
-                value: "Aerografo de Gravedad de Alta",
-                code: "47832",
-                UE: "1/10",
-              },
-            ],
+            name: "Aerogrado de Gravedad de Alta",
+            options: [{ value: "", code: "47832", UE: "1/10" }],
           },
           {
             name: "Cinta Papel Drywall",
@@ -279,6 +267,55 @@ const flipbook = [
         ],
       },
     ],
+    productsInBack: [{}],
+  },
+
+  {
+    numberSheet: 3,
+    videoMediaLinkBack: "https://vm.tiktok.com/ZM6Ab7BqK/",
+    imageFront: "./images/pagina_5.webp",
+    imageBack: "./images/pagina_6.webp",
+    productsInFront: [{}],
+    productsInBack: [{}],
+  },
+
+  {
+    numberSheet: 4,
+    imageFront: "./images/pagina_7.webp",
+    imageBack: "./images/pagina_8.webp",
+    productsInFront: [{}],
+    productsInBack: [{}],
+  },
+
+  {
+    numberSheet: 5,
+    imageFront: "./images/pagina_9.webp",
+    imageBack: "./images/pagina_10.webp",
+    productsInFront: [{}],
+    productsInBack: [{}],
+  },
+
+  {
+    numberSheet: 6,
+    imageFront: "./images/pagina_11.webp",
+    imageBack: "./images/pagina_12.webp",
+    productsInFront: [{}],
+    productsInBack: [{}],
+  },
+
+  {
+    numberSheet: 7,
+    imageFront: "./images/pagina_13.webp",
+    imageBack: "./images/pagina_14.webp",
+    productsInFront: [{}],
+    productsInBack: [{}],
+  },
+
+  {
+    numberSheet: 8,
+    imageFront: "./images/pagina_15.webp",
+    imageBack: "./images/pagina_16.webp",
+    productsInFront: [{}],
     productsInBack: [{}],
   },
 ];
