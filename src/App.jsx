@@ -6,14 +6,10 @@ import Nav from "./assets/components/nav/Nav.jsx";
 import Header from "./assets/components/header/Header.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {
-  faArrowLeft,
-  faArrowRight,
-  faBagShopping,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeSection, setActiveSection] = useState("aerosol");
   const [sheets, setSheets] = useState(
@@ -29,6 +25,14 @@ function App() {
       productoBack: f.productsInBack,
     }))
   );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   function prevPage() {
     if (currentPage >= 1) {
@@ -90,7 +94,17 @@ function App() {
 
   return (
     <>
-      <div className="container_home">
+      {loading && (
+        <div className="loader book">
+          <figure className="page_loader"></figure>
+          <figure className="page_loader"></figure>
+          <figure className="page_loader"></figure>
+        </div>
+      )}
+      <div
+        className="container_home"
+        style={{ opacity: `${loading ? "0" : "1"}` }}
+      >
         <>
           <Nav
             handleButtonClick={handleButtonClick}
@@ -114,6 +128,7 @@ function App() {
                   productInBack={sheet.productoBack}
                   loading={loading}
                   setLoading={setLoading}
+                  pageNumber={index}
                 ></Sheet>
               ))}
 

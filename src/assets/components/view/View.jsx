@@ -1,41 +1,37 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/View.css";
 import { useCarrito } from "../carrito/CarritoContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
-function View({ product, showView, setShowView }) {
+function View({ product, showView, setShowView, tipoSelect, optionProp }) {
   const { dispatch } = useCarrito();
   const [show, setShow] = useState(showView);
   const [cantidad, setCantidad] = useState(1);
-  const [tipoSeleccionado, setTipoSeleccionado] = useState("");
   const [opcionSeleccionada, setOpcionSeleccionada] = useState("");
-
   const categorias = product.map((categoria) => categoria.name);
   const descriptions = product.map((description) => description.description);
-  const tipos =
-    product.length > 0
-      ? product.find((categoria) => categoria.name)?.tipos || []
-      : [];
-  const options =
-    (tipoSeleccionado &&
-      tipos.find((tipo) => tipo.name === tipoSeleccionado)?.options) ||
-    [];
-  const code =
-    opcionSeleccionada &&
-    options.find((option) => option.value === opcionSeleccionada)?.code;
 
-  const handleTipoChange = (e) => {
-    setTipoSeleccionado(e.target.value);
-    setOpcionSeleccionada("");
-  };
+  const code = optionProp.find(
+    (option) => option.value === opcionSeleccionada
+  )?.code;
 
   const handleOpcionChange = (e) => {
     setOpcionSeleccionada(e.target.value);
   };
 
+  const handleInputChange = (e) => {
+    const value = e.target.value === "" ? "" : parseInt(e.target.value, 10);
+
+    if (!isNaN(value) && (value === "" || value >= 1)) {
+      setCantidad(value);
+    }
+  };
+
   const handleAgregarAlCarrito = () => {
     const newItem = {
-      categoria: categorias[0], // Accedemos al primer elemento del array
-      tipo: tipoSeleccionado,
+      categoria: categorias[0],
+      tipo: tipoSelect,
       opcion: opcionSeleccionada,
       cantidad: parseInt(cantidad, 10),
       codigo: code,
@@ -45,7 +41,6 @@ function View({ product, showView, setShowView }) {
 
     setOpcionSeleccionada("");
     setCantidad(1);
-    setTipoSeleccionado("");
   };
 
   useEffect(() => {
@@ -68,42 +63,25 @@ function View({ product, showView, setShowView }) {
                   {categoria}
                 </h1>
               ))}
+              <h1>{tipoSelect}</h1>
 
               <p className="code_product">Codigo: {code}</p>
               <div className="form_container">
                 <form>
-                  <label htmlFor="tipo">Seleccionar tipo:</label>
-                  <select
-                    id="tipo"
-                    onChange={handleTipoChange}
-                    value={tipoSeleccionado}
-                  >
-                    <>
-                      <option value="">Seleccione un tipo</option>
-                      {tipos.map((tipo, index) => (
-                        <option key={index} value={tipo.name}>
-                          {tipo.name}
-                        </option>
-                      ))}
-                    </>
-                  </select>
-
                   <label htmlFor="opcion">Seleccionar opción:</label>
                   <select
                     id="opcion"
                     onChange={handleOpcionChange}
                     value={opcionSeleccionada}
                   >
-                    {tipoSeleccionado && (
-                      <>
-                        <option value="">Seleccione una opción</option>
-                        {options.map((opcion, index) => (
-                          <option key={index} value={opcion.value}>
-                            {opcion.value}
-                          </option>
-                        ))}
-                      </>
-                    )}
+                    <>
+                      <option value="">Seleccione una opción</option>
+                      {optionProp.map((opcion, index) => (
+                        <option key={index} value={opcion.value}>
+                          {opcion.value}
+                        </option>
+                      ))}
+                    </>
                   </select>
                 </form>
               </div>
@@ -115,7 +93,19 @@ function View({ product, showView, setShowView }) {
                   >
                     Agregar
                   </button>
-                  <p>{cantidad}</p>
+                  <input
+                    type="text"
+                    value={cantidad}
+                    onChange={handleInputChange}
+                    onBlur={() => {
+                      const value =
+                        cantidad === "" ? "" : parseInt(cantidad, 10);
+
+                      if (isNaN(value) || value < 1) {
+                        setCantidad(1);
+                      }
+                    }}
+                  />
                   <button
                     className="minus_amount"
                     onClick={() => cantidad > 1 && setCantidad(cantidad - 1)}
@@ -124,7 +114,7 @@ function View({ product, showView, setShowView }) {
                   </button>
                 </div>
                 <div className="button_cart_container">
-                  {tipoSeleccionado && (
+                  {opcionSeleccionada && (
                     <button
                       onClick={handleAgregarAlCarrito}
                       className="add_to_cart"
@@ -146,12 +136,13 @@ function View({ product, showView, setShowView }) {
             ))}
 
             <button
+              title="Cerrar"
               onClick={() => {
                 setShowView(false);
               }}
               className="close_view"
             >
-              Cerrar
+              <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
             </button>
           </div>
         </div>

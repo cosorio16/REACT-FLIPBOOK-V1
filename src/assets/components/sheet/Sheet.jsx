@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../../styles/Sheet.css";
-import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
+import { faBagShopping, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import View from "../view/View";
@@ -16,18 +16,27 @@ function Sheet({
   productInFront,
   productInBack,
   sheetNumber,
+  pageNumber,
 }) {
-  const [loading, setLoading] = useState(true);
+  const [tipoInSheet, setTipoInSheet] = useState("");
   const [showStatusFront, setShowStatusFront] = useState(false);
   const [showStatusBack, setShowStatusBack] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 5500);
+  const tiposFront =
+    productInFront.length > 0
+      ? productInFront.find((categoria) => categoria.name)?.tipos || []
+      : [];
 
-    return () => clearTimeout(timer);
-  }, []);
+  const optionsInFront =
+    tiposFront.find((tipo) => tipo.name === tipoInSheet)?.options || [];
+
+  const tiposBack =
+    productInBack.length > 0
+      ? productInBack.find((categoria) => categoria.name)?.tipos || []
+      : [];
+
+  const optionsInBack =
+    tiposBack.find((tipo) => tipo.name === tipoInSheet)?.options || [];
 
   useEffect(() => {
     setShowStatusFront(showStatusFront);
@@ -39,31 +48,28 @@ function Sheet({
 
   return (
     <>
-      {loading && (
-        <div class="loader book">
-          <figure class="page_loader"></figure>
-          <figure class="page_loader"></figure>
-          <figure class="page_loader"></figure>
-        </div>
-      )}
       <>
         <View
           showView={showStatusFront}
           setShowView={(showStatus) => setShowStatusFront(showStatus)}
           product={productInFront}
+          tipoSelect={tipoInSheet}
+          optionProp={optionsInFront}
         />
         <View
           showView={showStatusBack}
           setShowView={(showStatus) => setShowStatusBack(showStatus)}
           product={productInBack}
+          tipoSelect={tipoInSheet}
+          optionProp={optionsInBack}
         />
         <div
           id={`sheet-${sheetNumber}`}
           className={`sheet ${isFlipped ? "flip" : ""}`}
-          style={{ zIndex, opacity: `${loading ? "0" : "1"}` }}
+          style={{ zIndex }}
         >
           <div
-            className="page"
+            className={`page front${pageNumber}`}
             style={{
               background: `url(${imageFront})`,
               backgroundSize: "contain",
@@ -71,16 +77,21 @@ function Sheet({
               backgroundPosition: "center",
             }}
           >
-            <button
-              onClick={() => {
-                setShowStatusFront(!showStatusFront);
-                setShowStatusBack(false); // Asegurarse de cerrar el otro panel
-                setIconoActual(faBagShopping); // Restablecer el icono al abrir el panel
-              }}
-              className="product_view"
-            >
-              <FontAwesomeIcon icon={faBagShopping} title="Cerrar" />
-            </button>
+            <div className={`botones_productos_sheet_front${pageNumber}`}>
+              {tiposFront.map((tipo, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setShowStatusFront(!showStatusFront);
+                    setShowStatusBack(false);
+                    setTipoInSheet(tipo.name);
+                  }}
+                  className="product_view"
+                >
+                  <FontAwesomeIcon icon={faPlus} title="Ver Producto" />
+                </button>
+              ))}
+            </div>
 
             {videoMediaLinkFront && (
               <a
@@ -95,7 +106,7 @@ function Sheet({
           </div>
 
           <div
-            className="page back"
+            className={`page back back${pageNumber}`}
             style={{
               backgroundImage: `url(${imageBack})`,
               backgroundSize: "contain",
@@ -103,14 +114,22 @@ function Sheet({
               backgroundPosition: "center",
             }}
           >
-            <button
-              onClick={() => {
-                setShowStatusBack(!showStatusBack);
-              }}
-              className="product_view"
-            >
-              <FontAwesomeIcon icon={faBagShopping} title="Ver Productos" />
-            </button>
+            <div className={`botones_productos_sheet_back${pageNumber}`}>
+              {tiposBack.map((tipo, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setShowStatusBack(!showStatusBack);
+                    setShowStatusFront(false);
+                    setTipoInSheet(tipo.name);
+                  }}
+                  className="product_view"
+                >
+                  <FontAwesomeIcon icon={faBagShopping} title="Ver Productos" />
+                </button>
+              ))}
+            </div>
+
             {videoMediaLinkBack && (
               <a
                 className="videoMedia"

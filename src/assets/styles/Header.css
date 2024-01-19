@@ -10,7 +10,7 @@
   position: relative;
 }
 
-.header_container svg {
+.cart_shop svg {
   font-size: 1.5rem;
   cursor: pointer;
   position: relative;
@@ -51,40 +51,40 @@
   border: 1px solid rgba(0, 0, 0, 0.308);
 }
 
-.delete_button {
-  padding: 10px;
+.delete_button,
+.edit_button {
+  width: 40px;
+  height: 40px;
   font-weight: 1000;
   letter-spacing: 0.5px;
+  border-radius: 50%;
   position: relative;
   z-index: 1;
-  color: black;
+  color: rgb(0, 0, 0);
   margin-top: 10px;
   border: none;
+  transition: all 250ms;
+  cursor: pointer;
 }
 
-.delete_button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0;
-  background-color: red;
-  z-index: -1;
-  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-  transition: all 250ms;
+.edit_button {
+  margin-left: 10px;
+}
+
+.edit_button:hover {
+  color: #ffffff;
+  background-color: rgb(0, 255, 64);
+  font-weight: 1000;
+  transition: background-color 0.3s ease-in-out, color 0.5s ease;
+  border-radius: 50%;
 }
 
 .delete_button:hover {
   color: #ffffff;
+  background-color: red;
   font-weight: 1000;
-  transition: width 0.1s ease-in-out;
-}
-
-.delete_button:hover::before {
-  width: 100%;
-  transition: width 0.1s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.5s ease;
+  border-radius: 50%;
 }
 
 .categoria_header,
@@ -120,6 +120,7 @@
   border: none;
   font-weight: 1000;
   z-index: 1;
+  cursor: pointer;
 }
 
 .pay_with_whatsapp::before {

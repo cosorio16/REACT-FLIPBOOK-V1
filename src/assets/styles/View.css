@@ -23,7 +23,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 5px;
+  line-height: 1.7rem;
 }
 
 .code_product {
@@ -64,6 +65,16 @@ select {
   gap: 15px;
 }
 
+.amount_set_buttons input {
+  text-align: center;
+  width: 100px;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.226);
+}
+
 .amount_container button:hover {
   transform: scale(1.1);
   transition: transform 0.2s ease;
@@ -92,18 +103,23 @@ select {
 }
 
 .close_view {
-  width: 50%;
-  max-width: 500px;
-  position: relative;
-  right: calc(-20%);
-  padding: 10px;
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  right: 20px;
   border: none;
-  border-radius: 10px;
+  border-radius: 50%;
   background-color: red;
   color: white;
   font-weight: 1000;
   font-size: 1rem;
   margin: 5px;
+  cursor: pointer;
 }
 
 .add_to_cart {
