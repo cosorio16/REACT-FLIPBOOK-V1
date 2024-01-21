@@ -34,21 +34,39 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const updateSheets = sheets.map((sheet, index) =>
+      sheet.id === currentPage
+        ? {
+            ...sheet,
+            isFlipped: false,
+            zValue: flipbook.length - index,
+          }
+        : sheet
+    );
+
+    setSheets(updateSheets);
+  }, [currentPage]);
+
   function prevPage() {
     if (currentPage > 1) {
-      const updatedSheets = sheets.map((sheet, index) => ({
-        ...sheet,
-        isFlipped: false,
-        zValue: flipbook.length - index,
-      }));
+      const updateSheets = sheets.map((sheet, index) =>
+        sheet.id === currentPage
+          ? {
+              ...sheet,
+              isFlipped: false,
+              zValue: flipbook.length - index,
+            }
+          : sheet
+      );
 
-      setSheets(updatedSheets);
+      setSheets(updateSheets);
       setCurrentPage((prevPage) => prevPage - 1);
     }
   }
 
   function nextPage() {
-    if (currentPage >= 0 && currentPage < flipbook.length) {
+    if (currentPage < flipbook.length + 1) {
       const updatedSheets = sheets.map((sheet, index) => ({
         ...sheet,
         isFlipped: index < currentPage,
@@ -59,6 +77,7 @@ function App() {
       setCurrentPage((prevPage) => prevPage + 1);
     }
   }
+
   function handleButtonClick(buttonType) {
     const categoryMap = {
       aerosoles: 1,
